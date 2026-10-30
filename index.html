@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Management System (SMS)</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/print.css">
+
+  <!-- Chart.js for data visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Fullscreen Auth Shell (Login & Registration) -->
+  <div id="auth-shell" class="hidden">
+    <div id="auth-view"></div>
+  </div>
+
+  <!-- Primary Application Shell -->
+  <div id="app-shell">
+    <div id="app-root">
+
+      <!-- Left Sidebar Navigation -->
+      <aside class="sidebar" id="app-sidebar">
+        <div class="sidebar-header">
+          <a href="#dashboard" class="brand-link">
+            <div class="brand-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2.2" fill="none">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <div class="brand-text">
+              Nexus <span style="color: #60a5fa;">SMS</span>
+              <span class="brand-badge">Pro</span>
+            </div>
+          </a>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section-title">Overview</div>
+          <a href="#dashboard" class="nav-item">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Dashboard</span>
+          </a>
+
+          <div class="nav-section-title">Sales Pipeline</div>
+          <a href="#orders" class="nav-item">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span>Sales Orders</span>
+          </a>
+          <a href="#invoices" class="nav-item">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span>Invoices</span>
+          </a>
+          <a href="#customers" class="nav-item">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>Customers</span>
+          </a>
+
+          <div class="nav-section-title">Operations & Data</div>
+          <a href="#products" class="nav-item">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            <span>Products & Stock</span>
+          </a>
+          <a href="#reports" class="nav-item">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            <span>Sales Reports</span>
+          </a>
+
+          <div class="nav-section-title">System</div>
+          <a href="#profile" class="nav-item">
+            <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>Settings & Profile</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="sidebar-user">
+            <div class="user-avatar" id="sidebar-user-avatar">AM</div>
+            <div class="user-info">
+              <div class="user-name" id="sidebar-user-name">Alex Morgan</div>
+              <div class="user-role" id="sidebar-user-role">Sales Manager</div>
+            </div>
+          </div>
+          <button class="icon-btn btn-logout-action" title="Sign Out" aria-label="Sign Out" style="color: #94a3b8;">
+            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </button>
+        </div>
+      </aside>
+
+      <!-- App Main Content Wrapper -->
+      <div class="app-main">
+
+        <!-- Top Navigation Bar -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Open mobile menu">
+              <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+
+            <!-- Global Search Field -->
+            <div class="topbar-search">
+              <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="topbar-global-search" class="topbar-search-input" placeholder="Jump to order or customer...">
+              <kbd class="search-kbd">/</kbd>
+            </div>
+          </div>
+
+          <div class="topbar-right">
+            <!-- Theme Toggle Button (Dark mode 4.10) -->
+            <button class="icon-btn" id="theme-toggle-btn" title="Toggle Dark/Light Mode" aria-label="Toggle Dark/Light Mode">
+              <svg class="theme-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
+
+            <!-- Notifications Drawer Trigger (4.10) -->
+            <button class="icon-btn" id="notifications-btn" title="Activity & Notifications" aria-label="Activity & Notifications">
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <span class="notification-badge hidden" id="notif-badge"></span>
+            </button>
+
+            <!-- User Menu Dropdown -->
+            <div class="user-menu-wrapper">
+              <button class="user-trigger" id="user-menu-trigger" aria-label="User account menu">
+                <div class="user-avatar" id="topbar-user-avatar" style="width: 32px; height: 32px; font-size: 0.75rem;">AM</div>
+                <span class="text-sm font-semibold" id="topbar-user-name" style="max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Alex</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+
+              <div class="dropdown-menu" id="user-dropdown">
+                <div class="dropdown-header">
+                  <div class="text-xs font-semibold text-muted">SIGNED IN AS</div>
+                  <div class="text-sm font-semibold" style="margin-top: 2px;">Alex Morgan</div>
+                </div>
+                <a href="#profile" class="dropdown-item">
+                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  Profile & Settings
+                </a>
+                <button class="dropdown-item danger btn-logout-action">
+                  <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Dynamic Viewport -->
+        <main id="main-view" role="main"></main>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Notifications Drawer Panel (4.10) -->
+  <aside class="notification-panel" id="notifications-panel" aria-label="Notifications panel">
+    <div class="notification-panel-header">
+      <div class="flex items-center gap-2">
+        <h3 style="font-size: 1.1rem; font-weight: 700;">Activity & Notifications</h3>
+      </div>
+      <div class="flex items-center gap-1">
+        <button class="btn btn-ghost btn-sm" id="mark-all-read-btn" style="font-size: 0.75rem;">Mark Read</button>
+        <button class="icon-btn" id="close-notif-btn" aria-label="Close notifications">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+    <div class="notification-list" id="notification-list"></div>
+  </aside>
+
+  <!-- Global Modal & Backdrop Containers -->
+  <div class="backdrop" id="app-backdrop"></div>
+  <div class="modal-overlay" id="modal-overlay"></div>
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Main Application Script -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
+

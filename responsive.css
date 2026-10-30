@@ -1,0 +1,140 @@
+/* Responsive Media Queries */
+
+/* Tablet & Mobile Breakpoints (<= 1024px) */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+    box-shadow: var(--shadow-xl);
+  }
+
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .app-main {
+    margin-left: 0;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+  }
+
+  .topbar-left {
+    max-width: 100%;
+  }
+
+  .page-container {
+    padding: 1.25rem 1rem 2.5rem 1rem;
+  }
+}
+
+/* Tablet (<= 768px) */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .topbar-search {
+    display: none; /* Can be opened via mobile search icon or kept hidden */
+  }
+
+  .topbar {
+    padding: 0 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .page-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .page-actions .btn {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar-left, .toolbar-right {
+    width: 100%;
+  }
+
+  .search-field {
+    width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .notification-panel {
+    width: 100%;
+    right: -100%;
+  }
+
+  .modal {
+    margin: 1rem;
+    max-height: 94vh;
+  }
+}
+
+/* Mobile Small (<= 640px) */
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .status-timeline {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .card-header {
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .card-footer {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .pagination {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .table-container {
+    border-radius: 0;
+    margin: 0 -1rem;
+    width: calc(100% + 2rem);
+  }
+}
+
